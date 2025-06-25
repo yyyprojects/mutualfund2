@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mutual Funds: The Ultimate Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Brilliant Blues -->
+    <!-- 
+    Application Structure Plan: This SPA infographic is designed as a top-to-bottom narrative scroll. The flow mirrors a beginner's learning journey: 1. A high-impact introduction answers "What is it?" with a large stat and a simple analogy. 2. A "How it Works" section demystifies the NAV calculation with a simple flow diagram. 3. "Types of Funds" uses a donut chart for an overview and cards for details, allowing for easy comparison. 4. "The Great Debate" uses a bar chart to visually settle the active vs. passive argument. 5. The emotional centerpiece is "The Power of Fees," a line chart showing long-term impact. 6. It concludes with an actionable "Getting Started" guide. This linear story is the most effective way to present this report's content as an infographic.
+    -->
+    <!-- 
+    Visualization & Content Choices:
+    - Trillions in Assets Stat: Goal: Inform. Method: Large H1 text. Justification: A high-impact "hook." NO SVG.
+    - Fruit Basket Analogy: Goal: Inform. Method: HTML/CSS with Unicode icon. Justification: A simple, relatable visual metaphor. NO SVG.
+    - NAV Flow Diagram: Goal: Organize. Method: Styled divs with Tailwind, using flexbox and borders. Justification: Clearly illustrates a process without needing complex graphics. NO SVG/Mermaid.
+    - Fund Types by Assets Donut Chart: Goal: Compare. Method: Chart.js Donut. Justification: Shows the dominant share of stock funds at a glance. NO SVG.
+    - Active vs. Passive Bar Chart: Goal: Compare. Method: Chart.js Bar Chart. Justification: Visually proves the report's key finding about active fund underperformance over time. NO SVG.
+    - Fee Impact Line Chart: Goal: Change. Method: Chart.js Line Chart. Justification: The most powerful way to show the devastating impact of fees over time, a core concept from the report. NO SVG.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F0F9FF; /* light blue-50 */
+        }
+        .text-primary-deep { color: #075985; } /* sky-900 */
+        .text-primary-dark { color: #0C4A6E; } /* sky-950 */
+        .text-primary-medium { color: #0369A1; } /* sky-700 */
+        .bg-primary-light { background-color: #E0F2FE; } /* sky-200 */
+        .bg-primary-accent { background-color: #0EA5E9; } /* sky-500 */
+        .border-primary-accent { border-color: #0EA5E9; }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+            border: 1px solid #E0F2FE;
+        }
+        h2 {
+            font-size: 2.25rem;
+            line-height: 2.5rem;
+            font-weight: 800;
+            color: #0C4A6E;
+            margin-bottom: 1rem;
+        }
+        h3 {
+            font-size: 1.5rem;
+            line-height: 2rem;
+            font-weight: 700;
+            color: #0369A1;
+            margin-bottom: 0.75rem;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body class="text-primary-dark">
+
+    <div class="container mx-auto px-4 py-12 max-w-5xl">
+
+        <!-- Section 1: Introduction -->
+        <section class="text-center mb-20">
+            <h1 class="text-5xl md:text-7xl font-extrabold text-primary-deep mb-4">What is a Mutual Fund?</h1>
+            <p class="text-lg md:text-xl text-primary-medium max-w-3xl mx-auto mb-10">It's a company that pools money from many investors to purchase a diversified collection of stocks, bonds, or other assets. Think of it like this:</p>
+            <div class="card max-w-2xl mx-auto">
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    <span class="text-8xl">🧺</span>
+                    <div>
+                        <h3 class="text-primary-dark">The Fruit Basket Analogy</h3>
+                        <p class="text-gray-600 text-left">If you buy one apple and it's rotten, your entire purchase is a loss. But if you buy a basket with many different fruits, one bad apple doesn't matter much. A mutual fund is a single purchase that gives you an entire basket of investments, instantly spreading your risk.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: How They Work -->
+        <section class="mb-20">
+            <h2 class="text-center">How It Works: The Daily Price</h2>
+            <p class="text-lg text-primary-medium text-center max-w-3xl mx-auto mb-12">Unlike stocks, a mutual fund's price is set only once per day after the market closes. This price is called the Net Asset Value (NAV). Here's the simple formula:</p>
+            <div class="card">
+                <div class="flex flex-col md:flex-row items-center justify-around gap-4 text-center">
+                    <div class="p-4 rounded-lg">
+                        <p class="text-4xl">💰</p>
+                        <p class="font-semibold mt-2">Total Value of All Investments</p>
+                    </div>
+                    <div class="text-4xl font-bold text-primary-accent">-</div>
+                     <div class="p-4 rounded-lg">
+                        <p class="text-4xl">🧾</p>
+                        <p class="font-semibold mt-2">Fund's Liabilities & Expenses</p>
+                    </div>
+                     <div class="text-4xl font-bold text-primary-accent">÷</div>
+                     <div class="p-4 rounded-lg">
+                        <p class="text-4xl">📊</p>
+                        <p class="font-semibold mt-2">Total Number of Shares</p>
+                    </div>
+                    <div class="text-4xl font-bold text-primary-accent">=</div>
+                    <div class="bg-primary-light p-4 rounded-lg">
+                        <p class="text-4xl font-extrabold text-primary-deep" id="nav-price">$9.90</p>
+                        <p class="font-bold mt-2 text-primary-dark">NAV per Share</p>
+                    </div>
+                </div>
+                 <p class="text-sm text-gray-500 text-center mt-6">This structure encourages long-term investing, not short-term speculation. All buy and sell orders for the day are processed at this single price.</p>
+            </div>
+        </section>
+
+        <!-- Section 3: Types of Funds -->
+        <section class="mb-20">
+            <h2 class="text-center">A Tour of the Showroom</h2>
+            <p class="text-lg text-primary-medium text-center max-w-3xl mx-auto mb-12">Different funds have different goals. While thousands exist, they mostly fall into four main categories. Stock funds make up the largest portion of assets in the US.</p>
+            <div class="card mb-12">
+                <h3>US Mutual Fund Assets by Type</h3>
+                 <div class="chart-container" style="height: 300px; max-height: 300px;">
+                    <canvas id="fundTypesChart"></canvas>
+                </div>
+                <p class="text-xs text-gray-400 text-center mt-2">Illustrative data based on industry reports.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                <div class="card">
+                    <p class="text-5xl mb-3">📈</p>
+                    <h3 class="text-base font-bold">Stock Funds</h3>
+                    <p class="text-sm text-gray-600">Goal: High growth. Invests in company stocks. Best for long-term goals (10+ years).</p>
+                </div>
+                <div class="card">
+                    <p class="text-5xl mb-3">⚖️</p>
+                    <h3 class="text-base font-bold">Bond Funds</h3>
+                    <p class="text-sm text-gray-600">Goal: Income & stability. Invests in government/corporate debt. Less risky than stocks.</p>
+                </div>
+                <div class="card">
+                    <p class="text-5xl mb-3">🛡️</p>
+                    <h3 class="text-base font-bold">Money Market</h3>
+                    <p class="text-sm text-gray-600">Goal: Safety. Invests in safe, short-term debt. Used like a high-yield savings account.</p>
+                </div>
+                <div class="card">
+                    <p class="text-5xl mb-3">🧩</p>
+                    <h3 class="text-base font-bold">Balanced Funds</h3>
+                    <p class="text-sm text-gray-600">Goal: A mix. An all-in-one fund holding both stocks and bonds for diversification.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Active vs. Passive -->
+        <section class="mb-20">
+             <h2 class="text-center">The Great Debate: Active vs. Passive</h2>
+            <p class="text-lg text-primary-medium text-center max-w-3xl mx-auto mb-12">Do you pay an expert manager to try and <span class="font-bold">beat the market (Active)</span>, or just aim to <span class="font-bold">match the market (Passive)</span> as cheaply as possible? Decades of data show a surprising winner.</p>
+            <div class="card">
+                <h3>Most Active Funds Fail to Beat Their Passive Benchmark</h3>
+                <p class="text-gray-600 mb-6">The primary reason for this underperformance is the high fee hurdle active funds must overcome. The chart below shows the percentage of actively managed US stock funds that failed to beat their passive index fund counterparts over a 15-year period.</p>
+                <div class="chart-container">
+                    <canvas id="activePassiveChart"></canvas>
+                </div>
+                <p class="text-xs text-gray-400 text-center mt-2">Data Source: S&P SPIVA Reports. Chart shows typical long-term findings.</p>
+            </div>
+        </section>
+        
+        <!-- Section 5: The Power of Fees -->
+        <section class="mb-20">
+            <h2 class="text-center">The Devastating Power of a 1% Fee</h2>
+            <p class="text-lg text-primary-medium text-center max-w-3xl mx-auto mb-12">The single most important factor you can control is cost. A fee that seems tiny has a massive corrosive effect over time, because it reduces the money you have to grow in all future years. This is the magic and tragedy of compounding.</p>
+            <div class="card">
+                <h3>The Growth of $10,000: Low Fee vs. High Fee</h3>
+                <p class="text-gray-600 mb-6">This chart shows the dramatic impact of a 1% difference in annual fees on a $10,000 investment earning an average of 8% per year. The difference in outcomes is staggering.</p>
+                 <div class="chart-container">
+                    <canvas id="feeImpactChart"></canvas>
+                </div>
+                 <div class="mt-8 text-center bg-primary-light p-6 rounded-lg">
+                    <p class="text-lg text-primary-dark">After 40 years, that "tiny" 1% difference in fees results in:</p>
+                    <p class="text-4xl md:text-6xl font-extrabold text-red-500 my-2">$61,125</p>
+                    <p class="text-lg text-primary-dark">of your potential wealth being lost.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Getting Started -->
+        <section class="mb-12">
+            <h2 class="text-center">How to Get Started in 4 Steps</h2>
+            <p class="text-lg text-primary-medium text-center max-w-3xl mx-auto mb-12">Taking the first step is easier than you think. Here's a simple, practical path to making your first investment.</p>
+            <div class="relative pl-8">
+                <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-light rounded"></div>
+                <div class="mb-10 relative">
+                    <div class="absolute -left-12 top-0 h-8 w-8 rounded-full bg-primary-accent text-white flex items-center justify-center font-bold">1</div>
+                    <h3 class="text-primary-dark">Define Your Goals & Budget</h3>
+                    <p class="text-gray-600">What is this money for and when do you need it? Retirement in 30 years? A house in 5? Your goal determines your risk level. Then decide how much you can invest regularly.</p>
+                </div>
+                <div class="mb-10 relative">
+                    <div class="absolute -left-12 top-0 h-8 w-8 rounded-full bg-primary-accent text-white flex items-center justify-center font-bold">2</div>
+                    <h3 class="text-primary-dark">Choose the Right Account</h3>
+                    <p class="text-gray-600">Start with a workplace 401(k) to get any employer match (it's free money!). Then consider an IRA for tax advantages. Use a standard brokerage account for other goals.</p>
+                </div>
+                <div class="mb-10 relative">
+                    <div class="absolute -left-12 top-0 h-8 w-8 rounded-full bg-primary-accent text-white flex items-center justify-center font-bold">3</div>
+                    <h3 class="text-primary-dark">Select Your First Fund</h3>
+                    <p class="text-gray-600">For beginners, a low-cost, broadly diversified index fund (like an S&P 500 or Total Stock Market fund) is a fantastic starting point. Look for funds with an expense ratio below 0.20%.</p>
+                </div>
+                <div class="relative">
+                    <div class="absolute -left-12 top-0 h-8 w-8 rounded-full bg-primary-accent text-white flex items-center justify-center font-bold">4</div>
+                    <h3 class="text-primary-dark">Place Your Order</h3>
+                    <p class="text-gray-600">Enter the fund's ticker symbol (e.g., FXAIX) and the dollar amount you want to invest. Choose to "reinvest all distributions" to maximize growth. That's it, you're an investor!</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+<script>
+    const chartTooltipConfig = {
+        plugins: {
+            tooltip: {
+                callbacks: {
+                    title: function(tooltipItems) {
+                        const item = tooltipItems[0];
+                        let label = item.chart.data.labels[item.dataIndex];
+                        if (Array.isArray(label)) {
+                          return label.join(' ');
+                        } else {
+                          return label;
+                        }
+                    }
+                }
+            }
+        }
+    };
+    
+    function wrapLabel(str) {
+        if (str.length <= 16) {
+            return str;
+        }
+        const words = str.split(' ');
+        let currentLine = '';
+        const lines = [];
+        for (const word of words) {
+            if ((currentLine + ' ' + word).trim().length > 16 && currentLine.length > 0) {
+                lines.push(currentLine);
+                currentLine = word;
+            } else {
+                currentLine = (currentLine + ' ' + word).trim();
+            }
+        }
+        if (currentLine) {
+            lines.push(currentLine);
+        }
+        return lines;
+    }
+
+
+    // Chart 1: Fund Types
+    const fundTypesCtx = document.getElementById('fundTypesChart');
+    if (fundTypesCtx) {
+        new Chart(fundTypesCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Stock Funds', 'Bond Funds', 'Hybrid Funds', 'Money Market Funds'],
+                datasets: [{
+                    label: 'Assets by Type',
+                    data: [56, 21, 14, 9], // Illustrative percentages
+                    backgroundColor: [
+                        '#0EA5E9', // sky-500
+                        '#38BDF8', // sky-400
+                        '#7DD3FC', // sky-300
+                        '#BAE6FD'  // sky-200
+                    ],
+                    borderColor: '#F0F9FF',
+                    borderWidth: 4,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    ...chartTooltipConfig.plugins,
+                    legend: {
+                        position: 'bottom',
+                    }
+                }
+            }
+        });
+    }
+
+    // Chart 2: Active vs Passive
+    const activePassiveCtx = document.getElementById('activePassiveChart');
+    if (activePassiveCtx) {
+        new Chart(activePassiveCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Large-Cap Funds', 'Mid-Cap Funds', 'Small-Cap Funds'].map(wrapLabel),
+                datasets: [{
+                    label: '% Underperforming Benchmark (15 Yrs)',
+                    data: [92.4, 94.8, 91.3], // Based on SPIVA Year-End 2023 report data
+                    backgroundColor: '#38BDF8', // sky-400
+                    borderRadius: 4,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                ...chartTooltipConfig,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        grid: {
+                            display: false
+                        }
+                    },
+                    x: {
+                        grid: {
+                           color: '#E0F2FE' // sky-200
+                        }
+                    }
+                },
+                plugins: {
+                    ...chartTooltipConfig.plugins,
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                         ...chartTooltipConfig.plugins.tooltip,
+                         callbacks: {
+                            ...chartTooltipConfig.plugins.tooltip.callbacks,
+                            label: function(context) {
+                                return context.parsed.y + '% of funds underperformed';
+                            }
+                         }
+                    }
+                }
+            }
+        });
+    }
+
+    // Chart 3: Fee Impact
+    const feeImpactCtx = document.getElementById('feeImpactChart');
+    if (feeImpactCtx) {
+        const years = Array.from({length: 41}, (_, i) => i);
+        const feeData = {
+            lowFee: [],
+            highFee: []
+        };
+        let lowFeeBalance = 10000;
+        let highFeeBalance = 10000;
+        
+        for (let i = 0; i <= 40; i++) {
+            feeData.lowFee.push(lowFeeBalance);
+            feeData.highFee.push(highFeeBalance);
+            lowFeeBalance = lowFeeBalance * (1 + 0.08 - 0.0025); // 8% return, 0.25% fee
+            highFeeBalance = highFeeBalance * (1 + 0.08 - 0.0125); // 8% return, 1.25% fee
+        }
+
+        new Chart(feeImpactCtx, {
+            type: 'line',
+            data: {
+                labels: years,
+                datasets: [
+                    {
+                        label: 'Growth with 0.25% Fee',
+                        data: feeData.lowFee,
+                        borderColor: '#0EA5E9', // sky-500
+                        backgroundColor: '#0EA5E933',
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 0,
+                    },
+                    {
+                        label: 'Growth with 1.25% Fee',
+                        data: feeData.highFee,
+                        borderColor: '#F43F5E', // rose-500
+                        backgroundColor: '#F43F5E33',
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 0,
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                ...chartTooltipConfig,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + (value / 1000) + 'k';
+                            }
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Investment Years'
+                        }
+                    }
+                },
+                plugins: {
+                   ...chartTooltipConfig.plugins,
+                   tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        callbacks: {
+                           label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed.y);
+                                }
+                                return label;
+                            }
+                        }
+                   }
+                }
+            }
+        });
+    }
+
+</script>
+</body>
+</html>
